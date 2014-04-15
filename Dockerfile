@@ -12,7 +12,7 @@ ADD mongodb.repo /etc/yum.repos.d/mongodb.repo
 RUN yum -q -y update
 
 # install MongoDB
-RUN yum -q -y install mongo-10gen-server
+RUN yum -q -y install mongodb-org
 
 # add MongoDB base settings
 ADD mongod.conf /etc/mongod.conf
@@ -20,5 +20,5 @@ ADD mongod.conf /etc/mongod.conf
 # set up the dbpath (optionally, connect to storage at runtime)
 VOLUME ["/data"]
 
-# start MongoDB (optionally, add params at runtime)
+# start MongoDB (optionally, add other runtime MongoDB params)
 ENTRYPOINT ["/usr/bin/mongod", "--config", "/etc/mongod.conf"]
